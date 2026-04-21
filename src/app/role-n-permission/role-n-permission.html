@@ -1,0 +1,41 @@
+<div class="pageheader d-flex justify-content-between align-items-center mb-3">
+  <h5>Role N Permission</h5>
+</div>
+
+<div class="topnav">
+  <a href="" class="active">Development</a>
+  <a routerLink="/network" routerLinkActive="active">Network</a>
+  <a routerLink="/sale-manager" routerLinkActive="active">Sale Manager</a>
+ 
+</div>
+<form (ngSubmit)="onSubmit()">
+
+  <table border="1" width="100%">
+
+    <thead>
+      <tr>
+        <th>Object Name</th>
+        <th *ngFor="let col of columns">
+          {{ col | titlecase }}
+        </th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let item of permissions">
+
+        <td>{{item.name}}</td>
+
+        <td *ngFor="let col of columns">
+          <input type="checkbox" [checked]="item.selectedPermissions.includes(col)"
+            (change)="onCheckboxChange($event, item, col)" name="{{item.name}}-{{col}}">
+        </td>
+
+      </tr>
+      
+    </tbody>
+
+  </table>
+  <button type="submit">Submit</button>
+
+</form>

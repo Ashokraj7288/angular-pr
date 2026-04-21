@@ -1,0 +1,94 @@
+
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+<div class="modal-body">
+    <div class="modal-header">
+      <h5 class="modal-title">WEL-COME TO USER INFORMATION</h5>
+     
+    </div>
+  <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+    <div class="col-md-4">
+      <label>First Name</label>
+      <input class="form-control" formControlName="firstName">
+      <div class="text-danger" *ngIf="editUserForm.get('firstName')?.touched && editUserForm.get('firstName')?.invalid">
+        First Name Required
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label>Last Name</label>
+      <input class="form-control" formControlName="lastName">
+      <div class="text-danger" *ngIf="editUserForm.get('lastName')?.touched && editUserForm.get('lastName')?.invalid">
+        Last Name Required
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label>User Name</label>
+      <input class="form-control" formControlName="userName">
+      <div class="text-danger" *ngIf="editUserForm.get('userName')?.touched && editUserForm.get('userName')?.invalid">
+        User Name Required
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label>Email</label>
+      <input class="form-control" formControlName="email">
+      <div class="text-danger" *ngIf="editUserForm.get('email')?.touched && editUserForm.get('email')?.invalid">
+        Email is Required
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label>Phone</label>
+      <input class="form-control" formControlName="phone">
+      <div class="text-danger" *ngIf="editUserForm.get('phone')?.touched && editUserForm.get('phone')?.invalid">
+        Phone is Required
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label>State</label>
+      <select class="form-select" formControlName="state">
+        <option value="">Select</option>
+        <option value="MH">Maharashtra</option>
+        <option value="TN">Tamil Nadu</option>
+        <option value="KA">Karnataka</option>
+      </select>
+      <div class="text-danger" *ngIf="editUserForm.get('state')?.touched && editUserForm.get('state')?.invalid">
+        State is Required
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <label>City</label>
+      <input class="form-control" formControlName="city">
+      <div class="text-danger" *ngIf="editUserForm.get('city')?.touched && editUserForm.get('city')?.invalid">
+        City is Required
+      </div>
+    </div>
+
+
+    <div class="col-md-4">
+      <label>Zip</label>
+      <input class="form-control" formControlName="zip">
+      <div class="text-danger" *ngIf="editUserForm.get('zip')?.touched && editUserForm.get('zip')?.invalid">
+        Zip is Required
+      </div>
+    </div>
+
+    <div class="col-12">
+      <button class="btn btn-warning btn-sm"  type="submit">
+        
+        Update
+      </button>
+      
+
+    </div>
+</form>
+</div>
+    </div>      
+  
+</div>
+    

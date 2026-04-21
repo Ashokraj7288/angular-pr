@@ -1,0 +1,107 @@
+.pageheader {
+    background: #ffffff;
+    padding: 15px 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  }
+  
+  .pageheader h5 {
+    font-weight: 600;
+    margin: 0;
+    color: #2c3e50;
+  }
+  
+  .pageheader .btn {
+    border-radius: 8px;
+    padding: 6px 18px;
+    font-weight: 500;
+  }
+
+  /* nvabar */
+
+
+  .topnav {
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .topnav a:hover {
+    border-bottom: 3px solid red;
+  }
+  
+  .topnav a.active {
+    border-bottom: 3px solid red;
+  }
+
+
+
+  .container{
+    padding:20px;
+    font-family: Arial;
+  }
+  
+  .header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+  }
+  
+  .save-btn{
+    background:#3cb371;
+    color:white;
+    border:none;
+    padding:8px 20px;
+    border-radius:5px;
+  }
+  
+  .content{
+    display:flex;
+    gap:20px;
+  }
+  
+  .permission-table{
+    flex:3;
+    border:1px solid #ddd;
+    padding:15px;
+  }
+  
+  table{
+    width:100%;
+    border-collapse:collapse;
+  }
+  
+  th,td{
+    padding:10px;
+    border-bottom:1px solid #eee;
+    text-align:center;
+  }
+  
+  th:first-child,
+  td:first-child{
+    text-align:left;
+  }
+  
+  .actions{
+    flex:1;
+    border:1px solid #ddd;
+    padding:15px;
+  }
+  
+  .actions label{
+    display:block;
+    margin-bottom:10px;
+  }
+  

@@ -1,0 +1,46 @@
+<div class="container mt-4">
+    <h2>Login Form</h2>
+
+<form [formGroup]="loginData" class="row g-3 needs-validation" novalidate (ngSubmit)="onLogin()">
+
+    <!-- Email -->
+    <div class="col-md-6">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" formControlName="email" placeholder="name@example.com" name="email"
+          required>
+        
+          <!-- // Validation message for email -->
+        <div class="text-danger" *ngIf="loginData.get('email')?.invalid && loginData.get('email')?.touched">
+            Email is required or invalid
+            </div>
+
+    </div>
+
+    <!-- Password -->
+    <div class="col-md-6">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" formControlName="password"  name="password"
+           required>
+        <div class="text-danger" *ngIf="loginData.get('password')?.invalid && loginData.get('password')?.touched">
+            Password is required and must be at least 6 characters long
+        </div>
+    </div>
+
+  <p class="switch-form" style="cursor: pointer; color: blue;" (click)="switchToRegister()">
+    Don't have an account? Register here.
+  </p> 
+    <!-- Submit Button -->
+    <div class="col-12">
+        <!-- <button type="submit" class="btn btn-primary">Login</button> -->
+        <button type="submit" (click)="onLogin()" class="btn btn-success">
+       Login </button>
+    </div>
+
+    
+
+    @if (showSuccess) {
+    <div class="alert alert-success">
+      <strong>Success!</strong> {{ successMessage }}
+    </div>
+    }
+</form>

@@ -1,0 +1,82 @@
+<div class="container mt-4">
+  <h2>Template Form</h2>
+
+  <form #userForm="ngForm" class="row g-3 needs-validation" novalidate (ngSubmit)="onsave()">
+
+    <!-- First Name -->
+    <div class="col-md-4">
+      <label class="form-label">First name</label>
+
+      <input type="text" name="firstName" class="form-control" [(ngModel)]="userObj.firstName" #firstName="ngModel"
+        required />
+
+      <div class="text-danger" *ngIf="firstName.invalid && (firstName.touched || userForm.submitted)">
+        This field is required
+      </div>
+    </div>
+
+    <!-- Last Name -->
+    <div class="col-md-4">
+      <label class="form-label">Last name</label>
+
+      <input type="text" name="lastName" class="form-control" [(ngModel)]="userObj.lastName" #lastName="ngModel"
+        required />
+
+      <div class="text-danger" *ngIf="lastName.invalid && (lastName.touched || userForm.submitted)">
+        This field is required
+      </div>
+    </div>
+
+    <!-- Username -->
+    <div class="col-md-4">
+      <label class="form-label">Username</label>
+
+      <input type="text" name="userName" class="form-control" [(ngModel)]="userObj.userName" />
+    </div>
+
+    <!-- City -->
+    <div class="col-md-6">
+      <label class="form-label">City</label>
+
+      <input type="text" name="city" class="form-control" [(ngModel)]="userObj.city" />
+    </div>
+
+    <!-- State -->
+    <div class="col-md-3">
+      <label class="form-label">State</label>
+
+      <select class="form-select" name="state" [(ngModel)]="userObj.state" required #state="ngModel">
+        <option value="">Select</option>
+        <option value="MH">Maharashtra</option>
+        <option value="TN">Tamil Nadu</option>
+        <option value="KA">Karnataka</option>
+      </select>
+
+      <div class="text-danger" *ngIf="state.invalid && (state.touched || userForm.submitted)">
+        Please select state
+      </div>
+    </div>
+
+    <!-- Zip -->
+    <div class="col-md-3">
+      <label class="form-label">Zip</label>
+
+      <input type="text" name="zip" class="form-control" [(ngModel)]="userObj.zip" required #zip="ngModel" />
+
+      <div class="text-danger" *ngIf="zip.invalid && (zip.touched || userForm.submitted)">
+        Zip is required
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">
+        Submit form
+      </button>
+    </div>
+
+  </form>
+</div>
+
+
+<button (click)="getproductsdata()">Get Products</button>

@@ -1,0 +1,69 @@
+<div class="container mt-4">
+  <h2>REGISTER Form</h2>
+
+  <form [formGroup]="registerForm" class="row g-3 needs-validation" novalidate (ngSubmit)="onsubmit()">
+     
+    <!-- User-Type -->
+    <div class="col-md-6">
+      <label class="form-label">User Type</label>
+      <select class="form-select" formControlName="user_type" name="user_type" required>
+        <!-- <option value="" disabled selected>Select user type</option> -->
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
+    </div>
+    
+    <!-- Username -->
+    <div class="col-md-6">
+      <label class="form-label">Username</label>
+      <input type="text" class="form-control" formControlName="username" placeholder="Enter username" name="username"
+        required>
+
+      <!-- // Validation message for username -->
+      <div class="text-danger" *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+        Username is required or invalid
+      </div>
+
+    </div>
+
+    <!-- Email -->
+    <div class="col-md-6">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="name@example.com" name="email"
+        required>
+
+      <!-- // Validation message for email -->
+      <div class="text-danger" *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        Email is required or invalid
+      </div>
+
+    </div>
+
+
+    <div class="col-md-6">
+      <label>Phone</label>
+      <input class="form-control" formControlName="phone">
+      <div class="text-danger" *ngIf="registerForm.get('phone')?.touched && registerForm.get('phone')?.invalid">
+        Phone is Required
+      </div>
+
+    </div>
+
+    <!-- Password -->
+    <div class="col-md-12">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" formControlName="password" name="password" required>
+      <div class="text-danger" *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        Password is required and must be at least 6 characters long
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="col-12">
+      <form (ngSubmit)="onsubmit()">
+        <button type="submit">Register</button>
+      </form>
+      
+    </div>
+
+  </form>
