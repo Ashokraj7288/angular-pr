@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import {  User } from '../models/user.model';
 import { Admin } from '../models/admin.model';
 import { TDL } from '../models/to-do-list';
@@ -94,7 +94,9 @@ export class APIService {
     );
   }
 
+  // subject behavior practice
 
+  courseDution = new BehaviorSubject<string>('Behavior Subject services');
 
 
 }

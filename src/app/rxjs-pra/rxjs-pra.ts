@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
-import { filter, from, Observable, of, Subject } from 'rxjs';
+import { filter, from, interval, Observable, of, Subject, timer } from 'rxjs';
 import { APIService } from '../service/api-service';
+import { Login } from '../login/login';
 
 
 @Component({
@@ -10,13 +11,17 @@ import { APIService } from '../service/api-service';
   templateUrl: './rxjs-pra.html',
   styleUrl: './rxjs-pra.css',
 })
+  
 export class RxjsPra   implements OnInit {
+  ngOnInit(): void {
+    throw new Error('Method not implemented.');
+  }
 
   // Inject the APIService to use its methods
   // http = inject(APIService);
 
 
-// // Observable that emits an array of userMasters
+// // c that emits an array of userMasters
 //   userMaster$ = of([
 //     { id: 1, name: 'Viratttttttt' },
 //     { id: 2, name: 'Rohit Bhai' },
@@ -74,39 +79,259 @@ export class RxjsPra   implements OnInit {
 
 
 
-  studentName$ = new Subject<string>();
+//   studentName$ = new Subject<string>();
 
- rollNo$ = new Subject<number>();
+//  rollNo$ = new Subject<number>();
 
-  takeTill$ = new Subject<void>();
+//   takeTill$ = new Subject<void>();
   
   
-  constructor() { 
-     setTimeout(() => {
-       this.studentName$.next('=======rrrr');
-       this.rollNo$.next(101);
-        this.takeTill$.next();
-     }, 4000);
-  }
-  ngOnInit(): void {
-    this.studentName$.subscribe((res: any) => {
-      debugger;
-     console.log(res);
-    });
+  // constructor() { 
+  //    setTimeout(() => {
+  //      this.studentName$.next('=======rrrr');
+  //      this.rollNo$.next(101);
+  //       this.takeTill$.next();
+  //    }, 4000);
+  // }
+
+  // ngOnInit(): void {
     
-    this.rollNo$.subscribe((res: any) => {
-      debugger;
-      console.log(res);
-    });
+  //   this.studentName$.subscribe((res: any) => {
+  //     debugger;
+  //    console.log(res);
+  //   });
+    
+  //   this.rollNo$.subscribe((res: any) => {
+  //     debugger;
+  //     console.log(res);
+  //   });
 
-    this.takeTill$.subscribe((res: any) => {
-      debugger;
-      console.log(res);
-    });
+  //   this.takeTill$.subscribe((res: any) => {
+  //     debugger;
+  //     console.log(res);
+  //   });
+
+
+
+  // }
+
+  
+  //////////////////// Rxjs Subject Practice ///////////////////////
+ 
+  ////////////////// Rxjs Creation Operators Practice of(), from()    ///////////////////////
+  
+  // cityList: string[] = ['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Kolkata'];
+  
+  // cityList$ = of(['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Kolkata']);
+
+  // cityList2$ = from(['Delhi', 'Mumbai', 'Bangalore', 'Chennai', 'Kolkata']);
+
+  // myInterval$ = interval(1000);
+
+  // timer$ = timer(5000);
+
+  // constructor() {
+  
+    // =>  timer is a creation operator that emits a single value after a specified delay. 
+    //     In this case, it will emit a value after 5000 milliseconds(5 seconds). 
+    //     The emitted value will be the number of milliseconds that have passed since the timer was started, which in this case will be 0.
+    
+//     this.timer$.subscribe(res => {
+//      console.log("timer: " + res);
+     
+// })
+
+     // => interval is a creation operator that emits sequential numbers every specified interval of time.
+     
+    // this.myInterval$.subscribe((res: number) => {
+    //   console.log('myInterval: ' +res);
+    // });
+
+      // => of is a creation operator that emits the values you provide as arguments.
+
+    //   this.cityList$.subscribe((res: any) => {
+    //     console.log(res);
+    //   });
+
+    // const myObs$ = new Observable(value => {
+    //   value.next(" this is observables");
+    //   value.complete();
+    // });
+
+    // myObs$.subscribe(message => {
+    //   console.log(message);
+    //  })
+
+    
+/////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
   }
   
 
-}
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
 
 
 
