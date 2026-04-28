@@ -7,6 +7,8 @@ import { Subject } from 'rxjs';
   templateUrl: './suject-behav.html',
   styleUrl: './suject-behav.css',
 })
+  
+  
 export class SujectBehav implements OnInit {
 
   studentName$ = new Subject();
@@ -20,11 +22,11 @@ export class SujectBehav implements OnInit {
   };
  
   constructor() {
-
+  
     setTimeout(() => {
-    
+
       this.studentName$.next("Angular Rxjs");
-console.log(this.studentName$);
+      console.log(this.studentName$);
       this.rollno$.next(101); 
       console.log(this.rollno$);
       
@@ -56,9 +58,19 @@ console.log(this.studentName$);
 
 
     this.userSrv.$courseDuration.subscribe(res => {
-      debugger;
       console.log("Course Duration:", res);
     });
+  
+
+    
+
+
+
+
+
+
+
+
   }
 
 

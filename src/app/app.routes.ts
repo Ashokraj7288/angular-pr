@@ -13,6 +13,9 @@ import { RoleNPermission } from './role-n-permission/role-n-permission';
 import { Network } from './network/network';
 import { RxjsPra } from './rxjs-pra/rxjs-pra';
 import { SujectBehav } from './suject-behav/suject-behav';
+import { Unsubscribe } from './unsubscribe/unsubscribe';
+import { Parents } from './parents/parents';
+import { Child } from './child/child';
 
 
 
@@ -33,5 +36,8 @@ export const routes: Routes = [
   { path: 'network', component: Network },
   { path: 'rxjs', component: RxjsPra },
   { path: 'suject', component: SujectBehav },
+  { path: 'unscribe', component: Unsubscribe }, 
+  { path: 'parent', component: Parents },
+  { path: 'child', component: Child },
   
 ];
