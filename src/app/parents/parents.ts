@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+ import { Component } from '@angular/core';
 import { Child } from '../child/child';
 
 @Component({
@@ -15,6 +15,39 @@ export class Parents {
     this.childMessage = message;
   }
 
-  
+
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

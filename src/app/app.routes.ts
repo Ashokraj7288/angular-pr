@@ -16,6 +16,9 @@ import { SujectBehav } from './suject-behav/suject-behav';
 import { Unsubscribe } from './unsubscribe/unsubscribe';
 import { Parents } from './parents/parents';
 import { Child } from './child/child';
+import { DemoComponents } from './demo-components/demo-components';
+import { ProjectWork } from './project-work/project-work';
+import { AdditionCharges } from './addition-charges/addition-charges';
 
 
 
@@ -39,5 +42,8 @@ export const routes: Routes = [
   { path: 'unscribe', component: Unsubscribe }, 
   { path: 'parent', component: Parents },
   { path: 'child', component: Child },
+  { path: 'demo', component: DemoComponents },
+  { path: 'project-work', component: ProjectWork },
+  { path: 'adition-chr', component:AdditionCharges}
   
 ];

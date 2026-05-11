@@ -47,6 +47,7 @@ export class Infor {
       state: user.state,
       zip: user.zip,
     });
+
   }
   
   onSubmit() {
@@ -67,9 +68,9 @@ export class Infor {
        alert("Updated Successfully");
       this.router.navigate(['/user-info']);
         },
-      error: (err) => {
+       error: (err) => {
           console.error("Update Error:", err);
-        }
+        }     
       });
   }
   

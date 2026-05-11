@@ -11,6 +11,15 @@ export interface User {
     image_path?: string;
 }
 
+export interface AdditionCharge {
+    id?: number;
+    addition_name: string;
+    amount_type: string;
+    amount: number;
+    effective_date_from: string;
+    effective_end_date: string;
+    transaction_type: string;
+}
 
   
   
