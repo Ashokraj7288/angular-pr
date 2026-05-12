@@ -11,8 +11,8 @@ export interface User {
     image_path?: string;
 }
 
-export interface AdditionCharge {
-    id?: number;
+export interface Addition {
+    id: number;
     addition_name: string;
     amount_type: string;
     amount: number;

@@ -24,7 +24,7 @@ export class AdditionChr {
   }
 
   // UPDATE
-  updateAdditionCharge(id: number,charge: any): Observable<any> {return this.http.put<any>(
+  updateAdditionCharge(id: number,charge: any): Observable<any> {return this.http.post<any>(
       `${this.apiUrl}/update/${id}`,
       charge
     );

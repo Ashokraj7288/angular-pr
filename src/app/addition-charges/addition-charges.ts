@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdditionChr } from '../service/addition-chr';
-import { AdditionCharge } from '../models/user.model';
+import { Addition } from '../models/user.model';
 
 @Component({
   selector: 'app-addition-charges',
@@ -14,30 +14,24 @@ import { AdditionCharge } from '../models/user.model';
 export class AdditionCharges implements OnInit {
   addCharges!: FormGroup;
   todayDate: string = '';
-  AdditionCharge: AdditionCharge[] = [];
+  AdditionCharge: Addition[] = [];
   isModalOpen = false;
-  
+  editId: number | null = null;
 
-  constructor(private fb: FormBuilder, private additionService: AdditionChr) { }
+  constructor(private fb: FormBuilder, private additionService: AdditionChr, private cdr: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
+    console.log("ngonit call");
     this.todayDate = new Date()
       .toISOString()
       .split('T')[0];
-
     this.addCharges = this.fb.group({
-
       addition_name: ['', Validators.required],
-
       amount_type: ['', Validators.required],
-
       amount: ['', Validators.required],
-
       effective_date_from: ['', Validators.required],
-
       effective_end_date: ['', Validators.required],
-
       transaction_type: ['', Validators.required]
 
     });
@@ -49,6 +43,7 @@ export class AdditionCharges implements OnInit {
   openDialog() {
     this.isModalOpen = true;
     this.addCharges.reset();
+    this.editId = null;
   }
 
   closeModal() {
@@ -66,22 +61,63 @@ export class AdditionCharges implements OnInit {
 
     console.log(this.addCharges.value);
 
-    this.additionService
-      .addAdditionCharge(this.addCharges.value)
-      .subscribe({
 
-        next: (res) => {
-          console.log(res);
-          this.addCharges.reset();
-          // this.AdditionCharge.push(res);
-          this.getAllData();
-        },
+    if (this.editId) {
 
-        error: (err) => {
-          console.log(err);
-        }
+      this.additionService
+        .updateAdditionCharge(this.editId, this.addCharges.value)
+        .subscribe({
 
-      });
+          next: (res) => {
+
+            console.log("Updated", res);
+
+            this.addCharges.reset();
+
+            this.editId = null;
+
+            this.isModalOpen = false;
+            this.getAllData();
+
+          },
+
+          error: (err) => {
+
+            console.log(err);
+
+          }
+
+        });
+
+    }
+
+    else {
+
+      this.additionService
+        .addAdditionCharge(this.addCharges.value)
+        .subscribe({
+
+          next: (res) => {
+
+            console.log("Added", res);
+
+            this.addCharges.reset();
+
+            this.isModalOpen = false;
+
+            this.getAllData();
+
+          },
+
+          error: (err) => {
+
+            console.log(err);
+
+          }
+
+        });
+
+    }
 
   }
 
@@ -89,31 +125,21 @@ export class AdditionCharges implements OnInit {
 
     console.log(id);
 
-    this.additionService
-      .deleteAdditionCharge(id)
-      .subscribe({
+    if (confirm("Are you sure?")) {
 
-        next: (res) => {
-
-          console.log(res);
-
-          this.getAllData();
-
-        },
-
-        error: (err) => {
-
-          console.log(err);
-
-        }
-
+      this.additionService.deleteAdditionCharge(id).subscribe(() => {
+        // this.getAllData();
       });
 
-  }
-  
-  onEdit(data: any) {
+    }
 
+  }
+
+  onEdit(data: any) {
+    this.isModalOpen = true;
     console.log(data);
+    this.addCharges.reset();
+    this.editId = data.id;
 
     this.addCharges.patchValue({
 
@@ -121,7 +147,7 @@ export class AdditionCharges implements OnInit {
       amount_type: data.amount_type,
       amount: data.amount,
       effective_date_from:
-      data.effective_date_from?.split('T')[0],
+        data.effective_date_from?.split('T')[0],
 
       effective_end_date:
         data.effective_end_date?.split('T')[0],
@@ -144,6 +170,7 @@ export class AdditionCharges implements OnInit {
           console.log(res);
 
           this.AdditionCharge = res.data;
+          this.cdr.detectChanges();
 
         },
 
