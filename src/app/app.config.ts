@@ -6,6 +6,9 @@ import { provideToastr } from 'ngx-toastr';
 import {  provideHttpClient, withInterceptors } from '@angular/common/http';
 import { InterceptorService } from './service/interceptor-service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { provideAnimations } from '@angular/platform-browser/animations';
+
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +19,8 @@ export const appConfig: ApplicationConfig = {
       multi: true
     },
 
+    provideAnimations(),
+
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes),
     provideToastr({
@@ -25,5 +30,7 @@ export const appConfig: ApplicationConfig = {
       closeButton: true
      
     })  
+
+   
   ]
 };

@@ -3,13 +3,17 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AdditionChr } from '../service/addition-chr';
 import { Addition } from '../models/user.model';
+import { ToasteService } from '../service/toaste-service';
+// import { ToastrService } from '@iqx-limited/ngx-toastr';
+;
 
 @Component({
   selector: 'app-addition-charges',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ],
   templateUrl: './addition-charges.html',
   styleUrl: './addition-charges.css',
+ 
 })
 export class AdditionCharges implements OnInit {
   addCharges!: FormGroup;
@@ -17,8 +21,9 @@ export class AdditionCharges implements OnInit {
   AdditionCharge: Addition[] = [];
   isModalOpen = false;
   editId: number | null = null;
+  
 
-  constructor(private fb: FormBuilder, private additionService: AdditionChr, private cdr: ChangeDetectorRef) { }
+  constructor(private fb: FormBuilder, private additionService: AdditionChr, private cdr: ChangeDetectorRef, private toast: ToasteService) { }
 
   ngOnInit(): void {
 
@@ -71,7 +76,7 @@ export class AdditionCharges implements OnInit {
           next: (res) => {
 
             console.log("Updated", res);
-
+            this.toast.success('Update charge updated successfully', 'Success');
             this.addCharges.reset();
 
             this.editId = null;
@@ -98,6 +103,9 @@ export class AdditionCharges implements OnInit {
         .subscribe({
 
           next: (res) => {
+
+              
+              this.toast.success('Addition charge added successfully', 'Success');
 
             console.log("Added", res);
 
@@ -128,10 +136,14 @@ export class AdditionCharges implements OnInit {
     if (confirm("Are you sure?")) {
 
       this.additionService.deleteAdditionCharge(id).subscribe(() => {
-        // this.getAllData();
+        this.toast.success('Addition charge deleted successfully', 'Success');
       });
 
+
     }
+
+    this.getAllData();
+
 
   }
 
