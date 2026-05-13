@@ -1,0 +1,164 @@
+
+
+<div class="pageheader d-flex justify-content-between align-items-center mb-3">
+  <h5>Additional Charges Information</h5>
+  <button class="btn btn-outline-primary" (click)="openDialog()">
+    Add Additional Charge
+  </button>
+</div>
+
+<div class="table-responsive">
+
+  <table class="table table-bordered table-hover align-middle">
+
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Addition Name</th>
+        <th>Amount Type</th>
+        <th>Amount</th>
+        <th>Effective Date From</th>
+        <th>Effective End Date</th>
+        <th>Transaction Type</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let user of AdditionCharge; let i = index">
+
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.addition_name }}</td>
+        <td>{{ user.amount_type }}</td>
+        <td>{{ user.amount }}</td>
+        <td>{{ user.effective_date_from | date:'dd-MM-yyyy' }}</td>
+        <td>{{ user.effective_end_date | date:'dd-MM-yyyy' }}</td>
+        <td>{{ user.transaction_type }}</td>
+
+        <td>
+
+          
+          <button class="btn btn-danger btn-sm" (click)="onDelete(user.id)">
+            Delete
+          </button>
+
+          <button class="btn btn-info btn-sm" (click)="onEdit(user)">
+            Edit
+          </button>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<ng-container *ngIf="isModalOpen">
+
+  <div class="modal fade show d-block">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Additional Charges Information</h5>
+          <button class="btn-close" (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+
+          <form [formGroup]="addCharges" class="row g-3" (ngSubmit)="onSubmit()">
+
+            <!-- Addition Name -->
+            <div class="col-md-4">
+              <label class="form-label">Addition Name*</label>
+              <input type="text" class="form-control" formControlName="addition_name"
+                placeholder="Enter Addition Name" />
+              <div class="text-danger mt-1"
+                *ngIf="addCharges.get('addition_name')?.invalid && addCharges.get('addition_name')?.touched">
+                Please enter addition name
+              </div>
+            </div>
+
+            <!-- Amount Type -->
+            <div class="col-md-4">
+              <label class="form-label">Amount Type*</label>
+
+              <select class="form-select" formControlName="amount_type">
+                <option value="" disabled>Select</option>
+                <option value="Base Amount">Base Amount</option>
+                <option value="Final Amount">Final Amount</option>
+              </select>
+              <div class="text-danger mt-1"
+                *ngIf="addCharges.get('amount_type')?.invalid && addCharges.get('amount_type')?.touched">
+                Please select amount type
+              </div>
+            </div>
+
+            <!-- Amount -->
+            <div class="col-md-4">
+              <label class="form-label">Amount*</label>
+
+              <input type="number" class="form-control" formControlName="amount" placeholder="Enter Amount">
+              <div class="text-danger mt-1"
+                *ngIf="addCharges.get('amount')?.invalid && addCharges.get('amount')?.touched">
+                Please enter amount
+              </div>
+            </div>
+
+            <!-- Effective Date From -->
+            <div class="col-md-4">
+              <label class="form-label">Effective Date From*</label>
+
+              <input type="date" class="form-control" formControlName="effective_date_from" [min]="todayDate">
+              <div class="text-danger mt-1"
+                *ngIf="addCharges.get('effective_date_from')?.invalid && addCharges.get('effective_date_from')?.touched">
+                Please select effective date from
+              </div>
+            </div>
+
+            <!-- Effective End Date -->
+            <div class="col-md-4">
+              <label class="form-label">Effective End Date*</label>
+
+              <input type="date" class="form-control" formControlName="effective_end_date" [min]="todayDate">
+              <div class="text-danger mt-1"
+                *ngIf="addCharges.get('effective_end_date')?.invalid && addCharges.get('effective_end_date')?.touched">
+                Please select effective end date
+              </div>
+
+            </div>
+
+            <!-- Transaction Type -->
+            <div class="col-md-4">
+              <label class="form-label">Transaction Type*</label>
+
+              <select class="form-select" formControlName="transaction_type">
+                <option value="" disabled>Select</option>
+                <option value="Credit">Credit</option>
+                <option value="Debit">Debit</option>
+              </select>
+
+              <div class="text-danger mt-1"
+                *ngIf="addCharges.get('transaction_type')?.invalid && addCharges.get('transaction_type')?.touched">
+                Please select transaction type
+              </div>
+            </div>
+
+
+            <div class="col-12 text-center mt-4">
+              <button type="submit" class="btn btn-primary px-4">
+                Submit
+              </button>
+              <button type="button" class="btn btn-secondary px-4 ms-2" (click)="closeModal()">
+                Cancel
+              </button>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-backdrop fade show"></div>
+  
+</ng-container>

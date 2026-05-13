@@ -1,0 +1,103 @@
+<div class="container mt-5">
+
+  <div class="card shadow-lg p-4 form-card">
+
+    <h2 class="text-center mb-4">Project Work Details</h2>
+
+    <form [formGroup]="empWork" class="row g-2" (ngSubmit)="onSubmit()">
+
+      <!-- Project Name -->
+      <div class="col-md-3">
+        <label class="form-label">Project Name</label>
+
+        <select class="form-select" formControlName="project_Name">
+          
+          <option value="" disabled>
+            Select Project
+          </option>
+
+
+          <option value="Project 1">Project 1</option>
+          <option value="Project 2">Project 2</option>
+          <option value="Project 3">Project 3</option>
+
+        </select>
+
+        <div class="text-danger mt-1" *ngIf="empWork.get('project_Name')?.invalid &&
+                    empWork.get('project_Name')?.touched">
+
+          Please select project name
+
+        </div>
+      </div>
+
+      <!-- Employee Name -->
+
+      <div class="col-md-3">
+        <label class="form-label">Employee Name</label>
+
+        <select class="form-select employee-select" formControlName="emp_Names"
+          (change)="onEmployeeSelect($event)">
+
+          <option *ngFor="let emp of employeeList" [value]="emp">
+            {{ emp }}
+          </option>
+
+        </select>
+
+        <div class="text-danger mt-1" *ngIf="empWork.get('emp_Names')?.invalid &&
+                    empWork.get('emp_Names')?.touched">
+          Please select employee names
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="col-md-3">
+        <label class="form-label">Work Date</label>
+
+        <input type="date" class="form-control" formControlName="work_Date" />
+
+        <div class="text-danger mt-1" *ngIf="empWork.get('work_Date')?.invalid &&
+                 empWork.get('work_Date')?.touched">
+          Please select date
+        </div>
+      </div>
+
+      <!-- Priority -->
+      <div class="col-md-3">
+        <label class="form-label">Priority</label>
+
+        <select class="form-select" formControlName="priority">
+          <option value="">Select Priority</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+
+        <div class="text-danger mt-1" *ngIf="empWork.get('priority')?.invalid &&
+                 empWork.get('priority')?.touched">
+          Please select priority
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="col-12 text-center mt-3">
+        <button type="submit" class="btn btn-success px-5">
+          Submit
+        </button>
+      </div>
+
+
+      
+ 
+      <!-- Reset button -->
+      <div class="col-12 text-center mt-3">
+      <button type="button" class="btn btn-secondary" (click)="resetForm()">
+        Reset
+      </button>
+    </div>
+    </form>
+
+  </div>
+
+</div>

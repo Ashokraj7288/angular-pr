@@ -1,0 +1,42 @@
+<div class="pageheader d-flex justify-content-between align-items-center mb-3">
+  <h5>Role N Permission</h5>
+  <button (click)="goToNetwork()">Back</button>
+</div>
+
+
+<div class="topnav">
+
+  <a routerLink="/network" routerLinkActive="active">Network</a>
+
+
+
+</div>
+
+
+<table border="1" width="100%">
+
+  <thead>
+    <tr>
+      <th>Object Name</th>
+      <th *ngFor="let col of columns">
+        {{ col | titlecase }}
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let item of permissions">
+      
+      <td>{{item.name}}</td>
+
+      <td *ngFor="let col of columns">
+        <input type="checkbox" [checked]="item.selectedPermissions.includes(col)"
+          (change)="onCheckboxChange($event, item, col)" name="{{item.name}}-{{col}}">
+      </td>
+
+    </tr>
+
+  </tbody>
+
+</table>
+<button (click)="onSubmit()">Submit</button>

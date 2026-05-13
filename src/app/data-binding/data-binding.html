@@ -1,0 +1,64 @@
+ <table> 
+<!-- // {{ interpolation }} -->
+<tr>
+    <td>
+{{courseName}}
+    </td>
+    <td>
+{{price}}
+    </td>
+</tr>
+
+
+<!-- // [property binding] -->
+<tr>
+    <td>
+        <input type="text" [value]="courseName">
+    </td>>
+</tr>
+
+
+<!-- // [Event binding] -->
+<tr>
+    <td><button (click)="messg()">Click Me</button></td>
+</tr>
+
+
+
+<tr>
+    <td><input type="text" [(ngModel)]="courseName"></td>
+</tr>
+
+<input [(ngModel)]="device.ip_address">
+
+</table> 
+
+
+
+<td>
+<input type="text" [value]="studentname">
+<button 
+(click)="studentname='RAJUUUUUU'">Change Name</button>
+
+</td>
+<td><input type="text" [(ngModel)]="studentname"></td> 
+
+
+<p *ngIf="isOnline">Device is Online</p>
+
+
+
+
+<ng-template #offlineBlock>
+  <p>Offline</p>
+</ng-template>
+
+
+<li *ngFor="let port of ports">
+  {{ port}}
+</li>
+
+
+
+
+

@@ -1,0 +1,112 @@
+<div class="pageheader d-flex justify-content-between align-items-center mb-3">
+  <h5>Admin Information</h5>
+  <button class="btn btn-outline-primary" (click)="openDialog()">
+    Add Admin
+  </button>
+</div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Role</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <tr *ngFor="let admin of admins; let i = index">
+      <td>{{ i + 1 }}</td>
+      <td>{{ admin.firstName }}</td>
+      <td>{{ admin.lastName }}</td>
+      <td>{{ admin.email }}</td>
+      <td>{{ admin.phone }}</td>
+      <td>{{ admin.role }}</td>
+
+      <td>
+        <button (click)="onDelete(admin)">Delete</button>
+        <button (click)="onEdit(admin)">Views</button>
+      </td>
+    </tr>
+  </tbody>
+
+
+</table>
+
+<!-- MODAL -->
+<ng-container *ngIf="isModalOpen">
+  <div class="modal fade show d-block">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">User Information</h5>
+          <button class="btn-close" (click)="closeModal()"></button>
+        </div>
+
+        <div class="modal-body">
+          <form [formGroup]="adminForm" (ngSubmit)="onSubmit()" class="row g-3">
+
+            <div class="col-md-4">
+              <label>First Name</label>
+              <input class="form-control" formControlName="firstName">
+              <div class="text-danger" *ngIf="adminForm.get('firstName')?.touched && adminForm.get('firstName')?.invalid">
+                First Name Required
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label>Last Name</label>
+              <input class="form-control" formControlName="lastName">
+              <div class="text-danger" *ngIf="adminForm.get('lastName')?.touched && adminForm.get('lastName')?.invalid">
+                Last Name Required
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label>Email</label>
+              <input class="form-control" formControlName="email">
+              <div class="text-danger" *ngIf="adminForm.get('email')?.touched && adminForm.get('email')?.invalid">
+                Email is Required
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label>Phone</label>
+              <input class="form-control" formControlName="phone">
+              <div class="text-danger" *ngIf="adminForm.get('phone')?.touched && adminForm.get('phone')?.invalid">
+                Phone is Required
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <label>Roles</label>
+              <select class="form-select" formControlName="role">
+                <option value="">Select</option>
+                <option value="Developer">Developer</option>
+                <option value="Account">Account</option>
+                <option value="Manager">Manager</option>
+              </select>
+              <div class="text-danger" *ngIf="adminForm.get('role')?.touched && adminForm.get('role')?.invalid">
+                Role is Required
+              </div>
+            </div>
+
+    
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">
+                Submit
+              </button>
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-container>
